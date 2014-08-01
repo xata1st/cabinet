@@ -6,11 +6,27 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
-           
-    <http use-expressions="true">
-	    <intercept-url pattern="/**" access="authenticated"/>
-	    <form-login />
-	    <http-basic />
+	
+	<http pattern="/login*" security="none"/>
+	<http>
+	  <intercept-url pattern='/**' access='ROLE_USER' />
+	  <form-login 
+	  	login-page="/login" 
+	  	default-target-url='/test' 
+	  	always-use-default-target='true'
+	  	authentication-failure-url="/login?error"
+	  	username-parameter="username"
+	  	password-parameter="password" />
 	</http>
+	
+	<authentication-manager>
+	  <authentication-provider>
+	    <user-service>
+	      <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+	      <user name="bob" password="bobspassword" authorities="ROLE_USER" />
+	    </user-service>
+	  </authentication-provider>
+	</authentication-manager>
+	
 	
 </beans:beans>

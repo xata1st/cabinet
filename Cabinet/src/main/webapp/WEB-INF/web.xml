@@ -11,9 +11,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Location of the XML file that defines the root application context.
 		- Applied by ContextLoaderListener.
 	-->
+	
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/application-config.xml</param-value>
+        <param-value>
+        	classpath:spring/security.xml
+        	classpath:spring/application-config.xml
+        </param-value>
+        <!-- <param-value>classpath:spring/security.xml</param-value> -->
     </context-param>
 
     <listener>
@@ -33,11 +38,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
     
     <filter>
 	  <filter-name>springSecurityFilterChain</filter-name>
@@ -48,4 +48,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	  <filter-name>springSecurityFilterChain</filter-name>
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>
