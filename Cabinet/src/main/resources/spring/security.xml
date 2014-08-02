@@ -7,16 +7,20 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 	
-	<http pattern="/login*" security="none"/>
+	<!-- <http pattern="/login.jsp*" security="none"/> -->
 	<http>
 	  <intercept-url pattern='/**' access='ROLE_USER' />
+	  <intercept-url pattern="/login.jsp*" access="ROLE_ANONYMOUS"/>
 	  <form-login 
-	  	login-page="/login" 
-	  	default-target-url='/test' 
+	  	login-page="/login.jsp" 
+	  	default-target-url='/home.jsp' 
 	  	always-use-default-target='true'
 	  	authentication-failure-url="/login?error"
 	  	username-parameter="username"
 	  	password-parameter="password" />
+  	  <logout
+	    logout-success-url="/home.jsp"
+  	  />
 	</http>
 	
 	<authentication-manager>
