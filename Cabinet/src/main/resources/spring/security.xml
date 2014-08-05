@@ -7,19 +7,20 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 	
-	<!-- <http pattern="/login.jsp*" security="none"/> -->
-	<http>
-	  <intercept-url pattern='/**' access='ROLE_USER' />
-	  <intercept-url pattern="/login.jsp*" access="ROLE_ANONYMOUS"/>
+	<http auto-config="true" use-expressions="true">
+	  <!--  
+	  <intercept-url pattern='/**' access="hasRole('ROLE_USER')" />
+	  -->
+	  <intercept-url pattern="/login*" access="isAnonymous()"/>
 	  <form-login 
-	  	login-page="/login.jsp" 
-	  	default-target-url='/home.jsp' 
+	  	login-page="/login" 
+	  	default-target-url='/home' 
 	  	always-use-default-target='true'
 	  	authentication-failure-url="/login?error"
 	  	username-parameter="username"
 	  	password-parameter="password" />
   	  <logout
-	    logout-success-url="/home.jsp"
+	    logout-success-url="/home"
   	  />
 	</http>
 	
@@ -31,6 +32,4 @@
 	    </user-service>
 	  </authentication-provider>
 	</authentication-manager>
-	
-	
 </beans:beans>
