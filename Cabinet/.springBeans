@@ -11,7 +11,9 @@
 		<config>src/main/resources/spring/security.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/spring/jdbc.xml</config>
 		<config>src/main/webapp/WEB-INF/mvc-config.xml</config>
+		<config>src/main/resources/spring/jpa.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

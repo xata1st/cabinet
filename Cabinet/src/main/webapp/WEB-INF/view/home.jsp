@@ -10,8 +10,10 @@
 	<form name = "logoutForm"  action="<c:url value='j_spring_security_logout' />" method='POST'>
 	 -->
 	<form name = "logoutForm"  action="j_spring_security_logout" method='POST'>
+		<input type="hidden"
+		    name="${_csrf.parameterName}"
+		    value="${_csrf.token}"/>
 		<input value="logout" type="submit"/>
 	</form>
-	
 </body>
 </html>
